@@ -6,6 +6,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import MailIcon from "@mui/icons-material/Mail";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import GdscLogo from "../assets/gdscLogo.png";
+import gdg from "../../public/assets/gdglogo.png"
 import codeIIEST_dark from "../assets/codeIIEST_dark.png";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 
@@ -33,7 +34,7 @@ export default function Footer() {
                     }}
                 >
                     <img src={codeIIEST_dark} style={{ width: "3.5rem" }} />
-                    <img src={GdscLogo} style={{ width: "13rem" }} />
+                    <img src={gdg} style={{ width: "13rem" }} />
                 </Box>
             </Box>
 

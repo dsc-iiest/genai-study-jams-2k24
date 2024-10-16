@@ -27,7 +27,7 @@ function Homepage() {
                     }}
                 >
                     {" "}
-                    Cloud Study Jams
+                    <span className="gradient-text">Gen AI</span> Study Jams
                 </Typography>
                 <ScrollToContent />
             </Box>

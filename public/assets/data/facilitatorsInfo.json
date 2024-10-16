@@ -1,0 +1,26 @@
+[
+    {
+        "name": "Abhijit Karmakar",
+        "desc": "I'm a dedicated Full-stack Web Developer proficient in MERN stack technologies. I have experience in developing projects like a technical fest website and an open-source CLI tool for API development.",
+        "profilepic": "AbhijitKarmakar.jpg",
+        "github": "full link",
+        "linkedin": "LinkedIn",
+        "portfolio": "Portfolio"
+    },
+    {
+        "name": "Abhijit Karmakar",
+        "desc": "I'm a dedicated Full-stack Web Developer proficient in MERN stack technologies. I have experience in developing projects like a technical fest website and an open-source CLI tool for API development.",
+        "profilepic": "AbhijitKarmakar.jpg",
+        "github": "full link",
+        "linkedin": "LinkedIn",
+        "portfolio": "Portfolio"
+    },
+    {
+        "name": "Soumyajit Karmakar",
+        "desc": "I'm a dedicated Full-stack Web Developer proficient in MERN stack technologies. I have experience in developing projects like a technical fest website and an open-source CLI tool for API development.",
+        "profilepic": "SoumyajitKarmakar.jpg",
+        "github": "Abhijit004",
+        "linkedin": "LinkedIn",
+        "portfolio": "Portfolio"
+    }
+]

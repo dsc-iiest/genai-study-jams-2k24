@@ -18,7 +18,6 @@ export default function MediaCard({
         <Box
             sx={{
                 display: "flex",
-                margin: "2rem",
                 padding: "1rem",
                 flexDirection: "column",
                 textAlign: "center",
@@ -32,8 +31,8 @@ export default function MediaCard({
             <Typography
                 variant="body2"
                 sx={{
-                    fontSize: "2.5rem",
-                    fontWeight: 900,
+                    fontSize: "1.5rem",
+                    fontWeight: 600,
                     fontFamily: "poppins",
                 }}
             >
@@ -44,8 +43,8 @@ export default function MediaCard({
                 variant="inherit"
                 color="inherit"
                 sx={{
-                    fontStyle: "italic",
-                    maxWidth: "50ch",
+                    // fontStyle: "italic",
+                    maxWidth: "30ch",
                     display: "flex",
                     flexWrap: "wrap",
                 }}

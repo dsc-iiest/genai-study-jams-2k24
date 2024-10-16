@@ -15,6 +15,7 @@ import { React, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloudIcon from "../assets/GCSJicon.png";
 import { NavLink } from "react-router-dom";
+import genai from "../../public/assets/genai.png"
 
 const Menubutton = () => {
     const [anchorElm, setAnchorElm] = useState(null);
@@ -40,11 +41,11 @@ const Menubutton = () => {
                         Home
                     </MenuItem>
                 </NavLink>
-                <NavLink style={{ textDecoration: "none" }} to="/resources">
+                {/* <NavLink style={{ textDecoration: "none" }} to="/resources">
                     <MenuItem sx={{ color: "black" }} onClick={handleClose}>
                         Resources
                     </MenuItem>
-                </NavLink>
+                </NavLink> */}
                 <NavLink style={{ textDecoration: "none" }} to="/leaderboard">
                     <MenuItem sx={{ color: "black" }} onClick={handleClose}>
                         Leaderboard{" "}
@@ -72,7 +73,7 @@ const HeaderTabs = () => {
                     Home
                 </Button>
             </NavLink>
-            <NavLink className="navlink" to="/resources">
+            {/* <NavLink className="navlink" to="/resources">
                 <Button
                     sx={{
                         border: 0,
@@ -85,7 +86,7 @@ const HeaderTabs = () => {
                 >
                     Resources
                 </Button>
-            </NavLink>
+            </NavLink> */}
             <NavLink className="navlink" to="/leaderboard">
                 <Button
                     sx={{
@@ -111,7 +112,7 @@ const HeaderComp = () => {
             <AppBar sx={{ backgroundColor: "white", height: "60px"}}>
                 <Toolbar sx={{ display: "flex" }}>
                     <img
-                        src={CloudIcon}
+                        src={genai}
                         alt="appIcon"
                         style={{ width: "2em", marginRight: "0.8rem" }}
                     />
@@ -120,12 +121,15 @@ const HeaderComp = () => {
                         sx={{
                             fontSize: "1.3rem",
                             flexGrow: 1,
-                            color: "black",
                             fontFamily: "poppins",
-                            fontWeight: 600,
+                            fontWeight: 900,
+                            color: "transparent",
+                            background: "linear-gradient(30deg, var(--blue), var(--red))",
+                            backgroundClip: "text",
+                            width: "min-content"
                         }}
                     >
-                        {mobileView ? "GCSJ" : "Google Cloud Study Jams"}
+                        {mobileView ? "GenAI" : "GenAI Study Jams"}
                     </Typography>
                     {mobileView ? <Menubutton /> : <HeaderTabs />}
                 </Toolbar>

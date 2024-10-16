@@ -8,6 +8,10 @@
 	box-sizing: border-box;
 	outline: 0;
 	font-family: "Poppins";
+	--red: #da483b;
+	--yellow: #ff9e0f;
+	--green: #1ca45c;
+	--blue: #4486f4;
 }
 
 html {
@@ -30,7 +34,7 @@ body {
 	color: hsl(0, 0%, 100%);
 	width: 100%;
 	height: 100vh;
-	padding: 8rem;
+	padding: 1rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -50,23 +54,16 @@ body {
 	background-position: top;
 }
 
-.bannerText::before {
-	content: "";
-	background-image: url("./assets/google.png");
-	background-repeat: no-repeat;
-	background-size: cover;
-	width: 18rem;
-	height: 6rem;
-	display: inline-block;
-	position: relative;
-	top: 1.5rem;
-	right: 0.5rem;
+.gradient-text {
+	color: transparent;
+	background: linear-gradient(90deg, var(--blue), var(--red));
+	background-clip: text;
 }
 
 .profilepic {
 	border-radius: 50%;
-	width: 14rem;
-	height: 14rem;
+	width: 11rem;
+	height: 11rem;
 	border-top: 0.5rem solid #da483b;
 	border-bottom: 0.5rem solid #ff9e0f;
 	border-left: 0.5rem solid #1ca45c;
@@ -88,10 +85,17 @@ body {
 	margin: 20px;
 }
 
-.header {
+.header,
+.header-center {
 	background-color: hsl(218, 89%, 66%);
 	color: #fff;
 	flex-grow: 1;
+}
+
+.header-center {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .navlink {
@@ -172,3 +176,18 @@ body {
 	font-weight: bold;
 }
 
+.facilitators {
+	gap: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0 0.5rem;
+	margin-bottom: 2rem;
+	flex-wrap: wrap;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: inherit
+}
