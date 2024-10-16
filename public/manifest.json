@@ -1,0 +1,25 @@
+{
+  "short_name": "GCSJ",
+  "name": "Google Cloud Study Jams",
+  "icons": [
+    {
+      "src": "GCSJicon_small.png",
+      "type": "image/png",
+      "sizes": "192x158"
+    },
+    {
+      "src": "GCSJicon_large.png",
+      "type": "image/png",
+      "sizes": "512x421"
+    },
+    {
+      "src": "GCSJ_sq.ico",
+      "type": "image/x-ico",
+      "sizes": "32x32"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
+}
