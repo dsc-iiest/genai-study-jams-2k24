@@ -3,13 +3,13 @@
         "name": "Swastika Kar",
         "desc": "I am fluent in C/C++ and currently exploring Python. My interests lie in machine learning and generative AI, where I am actively expanding my knowledge and skills.",
         "profilepic": "SwastikaKar.jpeg",
-        "github": "full link",
+        "github": "#",
         "linkedin": "https://www.linkedin.com/in/swas-kar/",
-        "portfolio": "Portfolio"
+        "portfolio": "#"
     },
     {
         "name": "Abhijit Karmakar",
-        "desc": "I'm a dedicated web developer and UI/UX designer with experience in developing websites for bootcamps and college fests. Avid Competitive programmer.",
+        "desc": "I'm a dedicated web developer and UI/UX designer with experience in developing websites for bootcamps and college fests. Avid competitive programmer.",
         "profilepic": "AbhijitKarmakar.jpg",
         "github": "https://github.com/Abhijit004",
         "linkedin": "https://www.linkedin.com/in/abhijit-karmakar-009ab026b/",
@@ -17,7 +17,7 @@
     },
     {
         "name": "Soumyajit Karmakar",
-        "desc": "I am a committed web developer and UI/UX designer, with a background in creating websites for bootcamps and contributing to festival-related website projects.",
+        "desc": "I am a passionate MERN stack developer, with experience in designing and developing frontend for multiple websites. Avid competitive programmer here too!",
         "profilepic": "SoumyajitKarmakar.jpg",
         "github": "https://github.com/Soumyajit0803",
         "linkedin": "https://www.linkedin.com/in/soumyajit-karmakar-68362526b/",
