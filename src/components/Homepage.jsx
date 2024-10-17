@@ -1,4 +1,4 @@
-import Content from "./content";
+import Content from "./Content";
 import { CssBaseline, Box, Typography} from "@mui/material";
 import ScrollToContent from "./ScrollBanner";
 function Homepage() {
