@@ -161,7 +161,7 @@ export default function Footer() {
                         by{" "}
                         <Link
                             className="footerhover"
-                            href="https://www.linkedin.com/in/abhijit-karmakar-009ab026b/"
+                            href="https://abhijit-karmakar.vercel.app/"
                             target="_blank"
                             rel="noopener noreferrer"
                             sx={{
@@ -176,7 +176,7 @@ export default function Footer() {
                         and{" "}
                         <Link
                             className="footerhover"
-                            href="https://www.linkedin.com/in/soumyajit-karmakar-68362526b/"
+                            href="https://soumyajit-dev.vercel.app/"
                             target="_blank"
                             rel="noopener noreferrer"
                             sx={{
