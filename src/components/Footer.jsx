@@ -33,8 +33,8 @@ export default function Footer() {
                         justifyContent: "center",
                     }}
                 >
-                    <img src={codeIIEST_dark} style={{ width: "3.5rem" }} />
-                    <img src={gdgdark} style={{ width: "4rem" }} />
+                    <img src={codeIIEST_dark} style={{ width: "3.5rem" }} alt="codeiiest"/>
+                    <img src={gdgdark} style={{ width: "4rem" }} alt="gdg"/>
                 </Box>
             </Box>
 

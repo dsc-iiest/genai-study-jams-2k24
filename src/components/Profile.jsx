@@ -38,7 +38,7 @@ export default function MediaCard({
             >
                 {name}
             </Typography>
-            <img src={profile} className="profilepic" />
+            <img src={profile} className="profilepic" alt={name}/>
             <Typography
                 variant="inherit"
                 color="inherit"

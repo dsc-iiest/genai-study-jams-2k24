@@ -66,8 +66,8 @@ export default function Content() {
                 }}
             >
                 <Box className="logohome" sx={{ background: "transparent" }}>
-                    <img src={codeIIEST_light} style={{ maxWidth: "10rem" }} />
-                    <img src={gdg} style={{ maxWidth: "15rem" }} />
+                    <img src={codeIIEST_light} style={{ maxWidth: "10rem" }} alt="codeiiest"/>
+                    <img src={gdg} style={{ maxWidth: "15rem" }} alt="gdg"/>
                 </Box>
 
                 <Typography
