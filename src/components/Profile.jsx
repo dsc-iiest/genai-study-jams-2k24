@@ -61,6 +61,7 @@ export default function MediaCard({
                     target="_blank"
                     rel="noopener noreferrer"
                     size="large"
+                    aria-label={`${name}'s Github`}
                 >
                     <GitHubIcon />
                 </IconButton>
@@ -69,6 +70,7 @@ export default function MediaCard({
                     target="_blank"
                     rel="noopener noreferrer"
                     size="large"
+                    aria-label={`${name}'s LinkedIN`}
                 >
                     <LinkedInIcon />
                 </IconButton>
@@ -77,6 +79,7 @@ export default function MediaCard({
                     target="_blank"
                     rel="noopener noreferrer"
                     size="large"
+                    aria-label={`${name}'s portfolio`}
                 >
                     <LanguageIcon />
                 </IconButton>}

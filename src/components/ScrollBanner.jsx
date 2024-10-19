@@ -12,6 +12,7 @@ export default function ScrollToContent() {
 
   return (
     <IconButton
+      aria-label="ScrollDown"
       onClick={scroll}
       sx={{
         color: "white",

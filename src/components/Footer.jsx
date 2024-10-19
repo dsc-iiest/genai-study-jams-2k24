@@ -59,6 +59,7 @@ export default function Footer() {
                 >
                     <IconButton
                         href="https://twitter.com/codeiiest"
+                        aria-label="CodeIIEST on Twitter"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="iconhover"
@@ -74,6 +75,7 @@ export default function Footer() {
                     </IconButton>
                     <IconButton
                         href="https://github.com/CodeIIEST-dev"
+                        aria-label="CodeIIEST Github"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="iconhover"
@@ -89,6 +91,7 @@ export default function Footer() {
                     </IconButton>
                     <IconButton
                         href="https://www.facebook.com/CodeIIEST"
+                        aria-label="CodeIIEST on FaceBook"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="iconhover"
@@ -104,6 +107,7 @@ export default function Footer() {
                     </IconButton>
                     <IconButton
                         href="mailto:codeiiest.iiest@gmail.com"
+                        aria-label="CodeIIEST on email"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="iconhover"
@@ -120,6 +124,7 @@ export default function Footer() {
                     <IconButton
                         className="iconhover"
                         href="https://www.youtube.com/codeiiest"
+                        aria-label="CodeIIEST on YouTube"
                         target="_blank"
                         rel="noopener noreferrer"
                         sx={{
@@ -162,6 +167,7 @@ export default function Footer() {
                         <Link
                             className="footerhover"
                             href="https://abhijit-karmakar.vercel.app/"
+                            aria-label="Abhijit Karmakar's portfolio"
                             target="_blank"
                             rel="noopener noreferrer"
                             sx={{
@@ -177,6 +183,7 @@ export default function Footer() {
                         <Link
                             className="footerhover"
                             href="https://soumyajit-dev.vercel.app/"
+                            aria-label="Soumyajit Karmakar's portfolio"
                             target="_blank"
                             rel="noopener noreferrer"
                             sx={{

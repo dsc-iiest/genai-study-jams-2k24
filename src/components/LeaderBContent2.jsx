@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import React, { useState, useEffect } from "react";
-import Loader from "../assets/Loader.svg"
+import Loader from "../assets/Loader.svg";
 
 async function readExcelFile() {
     try {
@@ -89,7 +89,7 @@ function TooltipMessage({ msg }) {
 const columns = [
     {
         field: "rank",
-        renderHeader: ()=>(<Typography style={{ lineHeight: "1.2em" }}>Rank</Typography>),
+        renderHeader: () => <Typography style={{ lineHeight: "1.2em" }}>Rank</Typography>,
         width: 60,
         headerClassName: "header",
         sortable: false,
@@ -101,19 +101,21 @@ const columns = [
     },
     {
         field: studname,
-        renderHeader: () => (<Typography style={{ lineHeight: "1.2em" }}>Name</Typography>),
+        renderHeader: () => <Typography style={{ lineHeight: "1.2em" }}>Name</Typography>,
         headerClassName: "header",
         width: 350,
         sortable: false,
         renderCell: (params) => (
             <Tooltip title={<TooltipMessage msg={params.value} />} arrow placement="right">
-                <a href={params.row[profileurl]}>{params.value}</a>
+                <a href={params.row[profileurl]} aria-label={`${params.row[studname]}'s Profile URL`}>
+                    {params.value}
+                </a>
             </Tooltip>
         ),
     },
     {
         field: skillBadges,
-        renderHeader: () => (<HeaderText line1={"Skill Badges"} line2={"Earned"} />),
+        renderHeader: () => <HeaderText line1={"Skill Badges"} line2={"Earned"} />,
         headerClassName: "header-center",
         type: "number",
         width: 120,
@@ -125,7 +127,7 @@ const columns = [
     },
     {
         field: arcadeGames,
-        renderHeader: () => (<HeaderText line1={"Arcade Games"} line2={"Completed"} />),
+        renderHeader: () => <HeaderText line1={"Arcade Games"} line2={"Completed"} />,
         headerClassName: "header-center",
         type: "number",
         width: 140,
@@ -137,7 +139,7 @@ const columns = [
     },
     {
         field: status,
-        renderHeader: () => (<HeaderText line1={"All Skill Badges"} line2={"& Games done"} />),
+        renderHeader: () => <HeaderText line1={"All Skill Badges"} line2={"& Games done"} />,
         headerClassName: "header-center",
         width: 150,
         renderCell: renderStatusCell,
@@ -199,28 +201,25 @@ function LeaderBoardTablularize() {
 
     // loading = 1;
     if (loading) {
-        return (
-            <img src={Loader} alt="Loading..." />
-        );
+        return <img src={Loader} alt="Loading..." />;
     }
-    
+
     function handleSearch(event) {
         const value = event.target.value;
         if (!value) {
             setCurrView(OrigView);
-            
+
             return;
         }
 
-        var filteredData = []
-        OrigView.forEach(e => {
+        var filteredData = [];
+        OrigView.forEach((e) => {
             if (e[studname].toLowerCase().startsWith(value.toLowerCase())) {
-                filteredData.push(e)
+                filteredData.push(e);
             }
         });
 
         setCurrView(filteredData);
-        
     }
 
     return (
@@ -246,7 +245,7 @@ function LeaderBoardTablularize() {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                    }
+                    },
                 }}
                 initialState={{
                     pagination: {
