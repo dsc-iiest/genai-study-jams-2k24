@@ -71,14 +71,14 @@ export default function MediaCard({
                 >
                     <LinkedInIcon />
                 </IconButton>
-                <IconButton
+                {portfolioLink && <IconButton
                     href={portfolioLink}
                     target="_blank"
                     rel="noopener noreferrer"
                     size="large"
                 >
                     <LanguageIcon />
-                </IconButton>
+                </IconButton>}
             </Box>
         </Box>
     );
