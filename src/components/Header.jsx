@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import { React, useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
-import CloudIcon from "../assets/GCSJicon.png";
 import { NavLink } from "react-router-dom";
 import genai from "../../public/assets/genai.png"
 

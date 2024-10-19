@@ -50,7 +50,8 @@ export default function MediaCard({
                 }}
             >
                 <FormatQuoteIcon
-                    sx={{ fontSize: "3rem", transform: "rotate(180deg)" }}
+                    sx={{ fontSize: "3rem", 
+                        transform: "rotate(180deg)" }}
                 />
                 {description}
             </Typography>

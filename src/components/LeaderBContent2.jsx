@@ -4,10 +4,11 @@ import * as XLSX from "xlsx";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import React, { useState, useEffect } from "react";
+import Loader from "../assets/loader.svg"
 
 async function readExcelFile() {
     try {
-        const filePath = "/assets/data/samplegenai.xlsx";
+        const filePath = "/assets/data/leaderboard.xlsx";
 
         const response = await fetch(filePath);
         if (!response.ok) {
@@ -31,7 +32,7 @@ const [skillBadges, arcadeGames, status, studname, profileurl] = [
     "# of Arcade Games Completed",
     "All Skill Badges & Games Completed",
     "User Name",
-    "Google Cloud Skills Boost Profile URL"
+    "Google Cloud Skills Boost Profile URL",
 ];
 
 const sortingFunc = (a, b) => {
@@ -82,29 +83,25 @@ function HeaderText({ line1, line2 }) {
 }
 
 function TooltipMessage({ msg }) {
-    return (
-        <div style={{ fontSize: "0.8rem", fontWeight: "600" }}>
-            {msg}
-        </div>
-    );
+    return <div style={{ fontSize: "0.8rem", fontWeight: "600" }}>{msg}</div>;
 }
 
 const columns = [
     {
         field: "rank",
-        headerName: <Typography style={{ lineHeight: "1.2em" }}>Rank</Typography>,
+        renderHeader: ()=>(<Typography style={{ lineHeight: "1.2em" }}>Rank</Typography>),
         width: 60,
         headerClassName: "header",
         sortable: false,
         renderCell: (params) => (
             <Tooltip title={<TooltipMessage msg={params.value} />} arrow placement="right">
-                {params.value}
+                <>{params.value}</>
             </Tooltip>
         ),
     },
     {
         field: studname,
-        headerName: <Typography style={{ lineHeight: "1.2em" }}>Name</Typography>,
+        renderHeader: () => (<Typography style={{ lineHeight: "1.2em" }}>Name</Typography>),
         headerClassName: "header",
         width: 350,
         sortable: false,
@@ -116,31 +113,31 @@ const columns = [
     },
     {
         field: skillBadges,
-        headerName: <HeaderText line1={"Skill Badges"} line2={"Earned"} />,
+        renderHeader: () => (<HeaderText line1={"Skill Badges"} line2={"Earned"} />),
         headerClassName: "header-center",
         type: "number",
         width: 120,
         renderCell: (params) => (
-            <Tooltip title={<TooltipMessage msg={params.value} />} arrow placement="right">
-                {params.value}
+            <Tooltip title={<TooltipMessage msg={`${params.value}`} />} arrow placement="right">
+                <>{params.value}</>
             </Tooltip>
         ),
     },
     {
         field: arcadeGames,
-        headerName: <HeaderText line1={"Arcade Games"} line2={"Completed"} />,
+        renderHeader: () => (<HeaderText line1={"Arcade Games"} line2={"Completed"} />),
         headerClassName: "header-center",
         type: "number",
         width: 140,
         renderCell: (params) => (
             <Tooltip title={<TooltipMessage msg={params.value} />} arrow placement="right">
-                {params.value}
+                <>{params.value}</>
             </Tooltip>
         ),
     },
     {
         field: status,
-        headerName: <HeaderText line1={"All Skill Badges"} line2={"& Games done"} />,
+        renderHeader: () => (<HeaderText line1={"All Skill Badges"} line2={"& Games done"} />),
         headerClassName: "header-center",
         width: 150,
         renderCell: renderStatusCell,
@@ -178,8 +175,8 @@ const GetRowStyle = (params) => {
 
 function LeaderBoardTablularize() {
     const [currview, setCurrView] = useState([]);
-    const [rowsRanked, setRowsRanked] = useState([]);
-    const [loading, setLoading] = useState(true); // To handle loading state
+    const [OrigView, setOrigView] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Fetch data and set state when the component mounts
@@ -191,8 +188,8 @@ function LeaderBoardTablularize() {
                     row[studname] = toTitleCase(row[studname]);
                 });
                 const rankedRows = assignRanks(rows, sortingFunc);
-                setRowsRanked(rankedRows);
                 setCurrView(rankedRows);
+                setOrigView(rankedRows);
             }
             setLoading(false);
         };
@@ -200,30 +197,30 @@ function LeaderBoardTablularize() {
         fetchData();
     }, []);
 
-    function sliceIndex(name) {
-        let [flag, i] = [0, 0];
-        for (; i < rowsRanked.length; i++) {
-            if (rowsRanked[i][studname].toLowerCase().startsWith(name.toLowerCase())) {
-                flag = 1;
-                break;
-            }
-        }
-        if (flag === 1) {
-            return i;
-        }
-        return 0;
-    }
-
-    function searchName(name) {
-        if (name.target.value !== "") {
-            setCurrView(rowsRanked.slice(sliceIndex(name.target.value)));
-        } else {
-            setCurrView(rowsRanked);
-        }
-    }
-
+    // loading = 1;
     if (loading) {
-        return <div>Loading...</div>; // Optional loading state
+        return (
+            <img src={Loader} alt="Loading..." />
+        );
+    }
+    
+    function handleSearch(event) {
+        const value = event.target.value;
+        if (!value) {
+            setCurrView(OrigView);
+            
+            return;
+        }
+
+        var filteredData = []
+        OrigView.forEach(e => {
+            if (e[studname].toLowerCase().startsWith(value.toLowerCase())) {
+                filteredData.push(e)
+            }
+        });
+
+        setCurrView(filteredData);
+        
     }
 
     return (
@@ -233,13 +230,13 @@ function LeaderBoardTablularize() {
                 variant="filled"
                 fullWidth
                 sx={{ border: "2px solid #4486f4", borderRadius: "8px 8px 0 0", borderBottom: "none", color: "green" }}
-                onChange={searchName}
+                onChange={handleSearch}
                 spellCheck={false}
             />
 
             <DataGrid
-                rows={currview}
                 columns={columns}
+                rows={currview}
                 sx={{
                     "& .MuiDataGrid-cell:": {
                         display: "flex",
@@ -249,7 +246,7 @@ function LeaderBoardTablularize() {
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
-                    },
+                    }
                 }}
                 initialState={{
                     pagination: {
@@ -270,7 +267,6 @@ function LeaderBoardTablularize() {
                 disableColumnFilter
                 disableColumnSelector
                 disableEval
-                disableRowSelectionOnClick
                 scrollbarSize={1}
             />
         </Box>

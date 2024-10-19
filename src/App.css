@@ -9,9 +9,9 @@
 	outline: 0;
 	font-family: "Poppins";
 	--red: #da483b;
+	--blue: #4486f4;
 	--yellow: #ff9e0f;
 	--green: #1ca45c;
-	--blue: #4486f4;
 }
 
 html {
