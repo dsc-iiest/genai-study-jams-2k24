@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import React, { useState, useEffect } from "react";
-import Loader from "../assets/loader.svg"
+import Loader from "../assets/Loader.svg"
 
 async function readExcelFile() {
     try {

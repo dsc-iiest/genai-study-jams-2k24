@@ -27,7 +27,7 @@ body {
 .banner,
 .Lbanner,
 .Rbanner {
-	background: rgba(0, 0, 0, 0.65) url("./assets/banner.png");
+	background: rgba(0, 0, 0, 0.65) url("./assets/banner.webp");
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top;
@@ -43,7 +43,7 @@ body {
 }
 
 .Lbanner {
-	background: rgba(0, 0, 0, 0.65) url("./assets/bannerL.jpg");
+	background: rgba(0, 0, 0, 0.65) url("./assets/bannerL.webp");
 	background-position: bottom;
 	background-size: contain;
 	background-repeat: repeat;
