@@ -4,7 +4,7 @@ import * as XLSX from "xlsx";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import React, { useState, useEffect } from "react";
-import Loader from "../assets/Loader.svg";
+import noRows from "../assets/null.svg";
 
 async function readExcelFile() {
     try {
@@ -107,7 +107,12 @@ const columns = [
         sortable: false,
         renderCell: (params) => (
             <Tooltip title={<TooltipMessage msg={params.value} />} arrow placement="right">
-                <a href={params.row[profileurl]} aria-label={`${params.row[studname]}'s Profile URL`}>
+                <a
+                    href={params.row[profileurl]}
+                    aria-label={`${params.row[studname]}'s Profile URL`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     {params.value}
                 </a>
             </Tooltip>
@@ -175,6 +180,26 @@ const GetRowStyle = (params) => {
     return {};
 };
 
+function NoRowsOverlay() {
+    return (
+        <Box
+            sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                flexDirection: "column",
+                paddingTop: "1rem",
+            }}
+        >
+            <div className="fail-image">
+                <img src={noRows} alt="search fail" style={{ width: 180 }} />
+            </div>
+            <span style={{ paddingTop: "1rem", fontSize: "1.2rem" }}>No Results Found</span>
+        </Box>
+    );
+}
+
 function LeaderBoardTablularize() {
     const [currview, setCurrView] = useState([]);
     const [OrigView, setOrigView] = useState([]);
@@ -199,12 +224,7 @@ function LeaderBoardTablularize() {
         fetchData();
     }, []);
 
-    // loading = 1;
-    if (loading) {
-        return <img src={Loader} alt="Loading..." />;
-    }
-
-    function handleSearch(event) {
+    const handleSearch = (event) => {
         const value = event.target.value;
         if (!value) {
             setCurrView(OrigView);
@@ -220,7 +240,7 @@ function LeaderBoardTablularize() {
         });
 
         setCurrView(filteredData);
-    }
+    };
 
     return (
         <Box className="leaderboard" style={{ boxShadow: "1px 1px 9px 0px hsl(0, 0.00%, 84.10%)" }}>
@@ -232,42 +252,53 @@ function LeaderBoardTablularize() {
                 onChange={handleSearch}
                 spellCheck={false}
             />
-
-            <DataGrid
-                columns={columns}
-                rows={currview}
-                sx={{
-                    "& .MuiDataGrid-cell:": {
-                        display: "flex",
-                        alignContent: "center",
-                    },
-                    "& .numbers": {
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                    },
-                }}
-                initialState={{
-                    pagination: {
-                        paginationModel: {
-                            pageSize: 10,
+            <Box height={600}>
+                <DataGrid
+                    columns={columns}
+                    rows={currview}
+                    sx={{
+                        "& .MuiDataGrid-cell:": {
+                            display: "flex",
+                            alignContent: "center",
                         },
-                    },
-                }}
-                getCellClassName={(params) => {
-                    if (typeof params.value === "number" || params.value === "No" || params.value === "Yes") {
-                        return "numbers";
-                    }
-                    return "";
-                }}
-                getRowClassName={GetRowStyle}
-                pageSizeOptions={[10, 50, 100]}
-                disableColumnMenu
-                disableColumnFilter
-                disableColumnSelector
-                disableEval
-                scrollbarSize={1}
-            />
+                        "& .numbers": {
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                        },
+                    }}
+                    initialState={{
+                        pagination: {
+                            paginationModel: {
+                                pageSize: 10,
+                            },
+                        },
+                    }}
+                    getCellClassName={(params) => {
+                        if (typeof params.value === "number" || params.value === "No" || params.value === "Yes") {
+                            return "numbers";
+                        }
+                        return "";
+                    }}
+                    getRowClassName={GetRowStyle}
+                    pageSizeOptions={[10, 50, 100]}
+                    disableColumnMenu
+                    disableColumnFilter
+                    disableColumnSelector
+                    disableEval
+                    scrollbarSize={1}
+                    slots={{
+                        noRowsOverlay: () => <NoRowsOverlay />,
+                    }}
+                    loading={loading}
+                    slotProps={{
+                        loadingOverlay: {
+                            variant: "skeleton",
+                            noRowsVariant: "skeleton",
+                        },
+                    }}
+                />
+            </Box>
         </Box>
     );
 }
