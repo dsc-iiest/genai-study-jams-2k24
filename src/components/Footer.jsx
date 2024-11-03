@@ -5,7 +5,7 @@ const Footer = () => {
     <footer>
       <div className="footer-top">
         <div className="about-section">
-          <img src="/src/assets/codeiiest-gdg.png" alt="codeiiest-gdg" />
+          <img src="https://raw.githubusercontent.com/Asif-Tanvir-2006/genai-study-jams-2k24/main/src/assets/codeiiest-gdg.png" alt="codeiiest-gdg" />
           <div className="text-area">
             <h3>IIEST GenAI</h3>
             <p>Join our GenAI Study Jams—interactive sessions to boost your AI skills and career!</p>
