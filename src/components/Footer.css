@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@font-face {
+    font-family: 'uf';
+    src: url('./fonts/UbuntuNerdFont-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f2f2f2;
+}
+
+.home {
+    height: 150vh;
+    width: 100%;
+}
+.spacer {
+    flex: 0;
+}
+footer {
+    background-color: #1f1f1f;
+    width: 100%;
+    height: 400px;
+    position: absolute;
+    /* bottom: 10px; */
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+footer .footer-top {
+    height: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .footer-top .about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 50%;
+    height: 100%;
+}
+
+footer .footer-top .about-section img {
+    width: 140px;
+    height: auto;
+}
+
+footer .footer-top .about-section .text-area {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.text-area p{
+    max-width: 28rem;
+}
+footer .footer-top .about-section .text-area h3 {
+    color: #ffffff;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+
+footer .footer-top .about-section .text-area p {
+    color: #c7c7c7;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+footer .footer-top .link-section {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+
+footer .footer-top .link-section .sub-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 7.4rem;
+    height: 100%;
+}
+.sub-section {
+    margin-top: 12.5rem;
+    margin-bottom: 3rem;
+}
+.text-area {
+    margin-bottom: 17rem;
+}
+footer .footer-top .link-section .sub-section h3 {
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+footer .footer-top .link-section .sub-section ul {
+    list-style: none;
+}
+
+footer .footer-top .link-section .sub-section li a {
+    text-decoration: none;
+    color: #c7c7c7;
+    font-size: 0.8rem;
+}
+
+footer .footer-top .link-section .sub-section li a:hover {
+    color: #ffffff;
+}
+
+footer .footer-bottom {
+    height: 30%;
+    border-top: 1px solid #333;
+    margin-top: 30px;
+    padding-top: 20px;
+    color: #888;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .footer-bottom p {
+    font-size: 1rem;
+}
+
+footer .footer-bottom .socials {
+    font-family: 'uf';
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+footer .footer-bottom .socials a {
+    color: #888;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: "uf";
+}
+
+footer .footer-bottom .socials a:hover {
+    color: #ffffff;
+    font-family: "uf";
+}
+
+footer .footer-bottom .socials a .social-icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    font-family: "uf";
+}
+
+@media screen and (max-width: 570px) {
+    footer .footer-bottom p {
+        font-size: 0.8rem;
+    }
+
+    footer .footer-bottom .socials a .social-icon {
+        width: 20px;
+        height: 20px;
+        font-family: "uf";
+    }
+}
+
+@media screen and (max-width: 500px) {
+    footer {
+        padding: 20px 20px;
+    }
+
+    footer .footer-bottom {
+        flex-direction: column;
+        gap: 10px;
+        padding-top: 15px;
+    }
+}
+
+@media screen and (max-width: 720px) {
+    footer {
+        height: auto;
+    }
+
+    footer .footer-top {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    footer .footer-top .about-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        width: 100%;
+        height: 100%;
+    }
+
+    footer .footer-top .link-section {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+    }
+
+    footer .footer-top .link-section .sub-section {
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    .sub-section {
+        flex: 1;
+        margin-top: 0;
+        margin-bottom: 0rem;
+
+    }
+    
+    .text-area {
+        margin-bottom: unset;
+    }
+    .spacer {
+        flex: 0.6;
+    }
+}
+
+.socials{
+    font-family: 'uf';
+}
