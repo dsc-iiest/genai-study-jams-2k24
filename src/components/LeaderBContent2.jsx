@@ -1,31 +1,10 @@
 import { Box, CssBaseline, Typography, TextField, Tooltip } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
-import * as XLSX from "xlsx";
 import CancelIcon from "@mui/icons-material/Cancel";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import noRows from "../assets/null.svg";
-
-async function readExcelFile() {
-    try {
-        const filePath = "/assets/data/leaderboard.xlsx";
-
-        const response = await fetch(filePath);
-        if (!response.ok) {
-            throw new Error(`Failed to fetch file: ${response.statusText}`);
-        }
-
-        const data = await response.arrayBuffer();
-        const workbook = XLSX.read(data, { type: "array" });
-        const sheetName = workbook.SheetNames[0];
-        const worksheet = workbook.Sheets[sheetName];
-        const jsonData = XLSX.utils.sheet_to_json(worksheet);
-        return jsonData;
-    } catch (error) {
-        console.error("Error reading Excel file:", error);
-        return null;
-    }
-}
+import useGoogleSheets from "../hooks/useSheets";
 
 const [skillBadges, arcadeGames, status, studname, profileurl] = [
     "# of Skill Badges Completed",
@@ -36,16 +15,47 @@ const [skillBadges, arcadeGames, status, studname, profileurl] = [
 ];
 
 const sortingFunc = (a, b) => {
-    if (b[arcadeGames] + b[skillBadges] - a[arcadeGames] - a[skillBadges] !== 0) {
-        return b[arcadeGames] + b[skillBadges] - a[arcadeGames] - a[skillBadges];
-    } else if (b[arcadeGames] - a[arcadeGames] !== 0) {
-        return b[arcadeGames] - a[arcadeGames];
-    } else if (b[skillBadges] - a[skillBadges] !== 0) {
-        return b[skillBadges] - a[skillBadges];
+    const arcadeGamesA = parseInt(a[arcadeGames], 10) || 0;
+    const arcadeGamesB = parseInt(b[arcadeGames], 10) || 0;
+    const skillBadgesA = parseInt(a[skillBadges], 10) || 0;
+    const skillBadgesB = parseInt(b[skillBadges], 10) || 0;
+
+    if (arcadeGamesB + skillBadgesB - (arcadeGamesA + skillBadgesA) !== 0) {
+        return arcadeGamesB + skillBadgesB - (arcadeGamesA + skillBadgesA);
+    } else if (arcadeGamesB - arcadeGamesA !== 0) {
+        return arcadeGamesB - arcadeGamesA;
+    } else if (skillBadgesB - skillBadgesA !== 0) {
+        return skillBadgesB - skillBadgesA;
     } else {
-        return b[studname] > a[studname] ? -1 : 1;
+        return a[studname].localeCompare(b[studname]);
     }
 };
+
+function assignRanks(arr, sortingFunc) {
+    if (!arr || arr.length === 0) return [];
+    const sarr = [...arr];
+    sarr.sort(sortingFunc);
+
+    let rank = 1;
+    let prev = sarr[0];
+
+    if (!prev) return sarr;
+    prev.rank = rank; 
+
+    for (let i = 1; i < sarr.length; i++) {
+        const curr = sarr[i];
+
+        if (!curr) continue; 
+        if (curr[skillBadges] !== prev[skillBadges] || curr[arcadeGames] !== prev[arcadeGames]) {
+            rank += 1;
+        }
+
+        curr.rank = rank;
+        prev = curr;
+    }
+
+    return sarr;
+}
 
 function toTitleCase(str) {
     const words = str.split(" ");
@@ -53,23 +63,6 @@ function toTitleCase(str) {
         return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     });
     return titleCaseWords.join(" ");
-}
-
-function assignRanks(arr, sortingFunc) {
-    const sarr = [...arr];
-    sarr.sort(sortingFunc);
-    let rank = 1;
-    let prev = sarr[0];
-    prev.rank = 1;
-    for (let i = 1; i < sarr.length; i++) {
-        let curr = sarr[i];
-        if (curr[skillBadges] !== prev[skillBadges] || curr[arcadeGames] !== prev[arcadeGames]) {
-            rank = rank + 1;
-        }
-        sarr[i].rank = rank;
-        prev = curr;
-    }
-    return sarr;
 }
 
 function HeaderText({ line1, line2 }) {
@@ -169,6 +162,7 @@ function renderStatusCell(params) {
 }
 
 var [gold, silver, bronze] = [1, 2, 3];
+
 const GetRowStyle = (params) => {
     if (params.row.rank === gold) {
         return "firstpos";
@@ -201,44 +195,30 @@ function NoRowsOverlay() {
 }
 
 function LeaderBoardTablularize() {
+    const { data, loading } = useGoogleSheets();
     const [currview, setCurrView] = useState([]);
     const [OrigView, setOrigView] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch data and set state when the component mounts
-        const fetchData = async () => {
-            const rows = await readExcelFile();
-            if (rows) {
-                rows.forEach((row, index) => {
-                    row.id = index + 1;
-                    row[studname] = toTitleCase(row[studname]);
-                });
-                const rankedRows = assignRanks(rows, sortingFunc);
-                setCurrView(rankedRows);
-                setOrigView(rankedRows);
-            }
-            setLoading(false);
-        };
-
-        fetchData();
-    }, []);
+        if (data) {
+            data.forEach((row, index) => {
+                row.id = index + 1;
+                row[studname] = toTitleCase(row[studname]);
+            });
+            const rankedRows = assignRanks(data, sortingFunc);
+            setCurrView(rankedRows);
+            setOrigView(rankedRows);
+        }
+    }, [data]);
 
     const handleSearch = (event) => {
         const value = event.target.value;
         if (!value) {
             setCurrView(OrigView);
-
             return;
         }
 
-        var filteredData = [];
-        OrigView.forEach((e) => {
-            if (e[studname].toLowerCase().startsWith(value.toLowerCase())) {
-                filteredData.push(e);
-            }
-        });
-
+        const filteredData = OrigView.filter((e) => e[studname].toLowerCase().startsWith(value.toLowerCase()));
         setCurrView(filteredData);
     };
 
