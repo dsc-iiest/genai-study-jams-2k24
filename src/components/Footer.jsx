@@ -50,6 +50,7 @@ const Footer = () => {
             <ul className="footer-links">
               <li><a href="https://iamakashtechie.vercel.app/">Akash Shaw</a></li>
               <li><a href="https://asiftanvir.pages.dev">Sk Asif Tanvir</a></li>
+              <li><a href="https://www.linkedin.com/in/avhixorin/">Abhishek Bharti</a></li>
             </ul>
           </div>
         </div>
