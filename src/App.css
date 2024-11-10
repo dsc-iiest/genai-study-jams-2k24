@@ -163,17 +163,17 @@ body {
 .firstpos {
 	color: hsl(51, 100%, 35%);
 	background-color: hsl(51, 100%, 70%);
-	font-weight: bold;
+	font-weight: 600;
 }
 .secondpos {
 	color: hsl(0, 0%, 40%);
 	background-color: hsl(0, 0%, 80%);
-	font-weight: bold;
+	font-weight: 600;
 }
 .thirdpos {
 	color: hsl(30, 60.8%, 40%);
 	background-color: hsl(30, 60.8%, 75%);
-	font-weight: bold;
+	font-weight: 600;
 }
 
 .facilitators {
